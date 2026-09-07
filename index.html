@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colégio Fermas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Principal / branding */
+    --maroon: #4D3211;        /* principal */
+    --maroon-dark: #3A240C;   /* principal oscuro / hover */
+    --maroon-light: #6F5422;  /* principal claro */
+
+    /* Fondos */
+    --cream: #ffffff;       /* fondo general */
+    --cream-deep: #E8D8B8;    /* fondo secundario */
+    --card: #FFFCF5;          /* cards / contenido */
+
+    /* Acentos */
+    --gold: #53BBB4;          /* acento principal (antes dorado, ahora verde-azulado) */
+    --accent-blue: #2197D6;
+    --accent-blue-dark: #2754A2;
+    --accent-yellow: #E7CC03;
+    --accent-orange: #E77809;
+    --green: #669140;         /* acento verde */
+    --accent-red: #D92B42;
+
+    /* Texto y líneas */
+    --ink: #2C231B;
+    --ink-soft: #5C4F41;
+    --line: #D8C9A8;
+
+    --radius: 6px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Fraunces', serif;
+    color: var(--maroon-dark);
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  img{ max-width: 100%; display:block; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+  }
+
+  .crest{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--card);
+    object-fit: contain;
+    padding: 4px;
+    border: 2px solid var(--gold);
+    flex-shrink:0;
+  }
+
+  .brand-name{
+    font-family:'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--maroon-dark);
+  }
+
+  .brand-name span{
+    display:block;
+    font-family:'Source Sans 3', sans-serif;
+    font-weight: 500;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    margin-top: 1px;
+  }
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap: 30px;
+  }
+
+  nav a{
+    font-size: 0.98rem;
+    color: var(--ink);
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+    transition: border-color .2s ease, color .2s ease;
+  }
+
+  nav a:hover, nav a.active{
+    color: var(--maroon);
+    border-color: var(--gold);
+  }
+
+  .menu-btn{
+    display:none;
+    background:none;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 7px 10px;
+    font-size: 1rem;
+    cursor:pointer;
+    color: var(--ink);
+  }
+
+  /* ---------- Views ---------- */
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  section{ padding: 64px 0; }
+
+  /* ---------- Hero (Início) ---------- */
+  .hero{
+    padding-top: 48px;
+  }
+
+  .hero-frame{
+    position: relative;
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: var(--radius);
+    overflow:hidden;
+    box-shadow: 0 1px 0 var(--line);
+  }
+
+  .photo-placeholder{
+    aspect-ratio: 16/8;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(198,134,43,.16), transparent 55%),
+      radial-gradient(circle at 80% 75%, rgba(51,81,62,.14), transparent 55%),
+      var(--cream-deep);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap: 14px;
+    text-align:center;
+    padding: 20px;
+  }
+
+  .photo-placeholder svg{ width: 84px; height: 84px; opacity: .75; }
+
+  .photo-placeholder .ph-label{
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    max-width: 320px;
+  }
+
+  .hero-caption{
+    padding: 34px 40px 40px;
+    text-align:center;
+  }
+
+  .hero-caption h1{
+    font-size: clamp(2rem, 4vw, 2.9rem);
+    margin-bottom: 10px;
+  }
+
+  .hero-caption p.tagline{
+    color: var(--maroon);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+
+  .hero-note{
+    max-width: 640px;
+    margin: 36px auto 0;
+    text-align:center;
+    color: var(--ink-soft);
+  }
+
+  .hero-actions{
+    display:flex;
+    gap: 16px;
+    justify-content:center;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .btn{
+    display:inline-block;
+    padding: 12px 26px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    cursor:pointer;
+  }
+
+  .btn-primary{
+    background: var(--maroon);
+    color: var(--cream);
+  }
+  .btn-primary:hover{ background: var(--maroon-dark); }
+
+  .btn-secondary{
+    background: transparent;
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .btn-secondary:hover{ border-color: var(--maroon); color: var(--maroon); }
+
+  /* ---------- Section headings ---------- */
+  .section-head{
+    max-width: 680px;
+    margin-bottom: 40px;
+  }
+  .section-head h2{
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin-bottom: 14px;
+  }
+  .section-head p{ color: var(--ink-soft); }
+
+  /* ---------- Sobre Nós ---------- */
+  .values-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 44px;
+  }
+
+  .value-card{
+    border-top: 3px solid var(--gold);
+    padding-top: 16px;
+  }
+
+  .value-card h3{
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+
+  .value-card p{ color: var(--ink-soft); font-size: 0.96rem; }
+
+  .about-text p + p{ margin-top: 16px; }
+  .about-text{ max-width: 680px; }
+
+  /* ---------- Oferecemos: lista de níveis ---------- */
+  .level-list{
+    border-top: 1px solid var(--line);
+  }
+
+  .level-row{
+    display:flex;
+    align-items:center;
+    gap: 28px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    cursor:pointer;
+    background: none;
+    border-left:none; border-right:none; border-top:none;
+    width:100%;
+    text-align:left;
+    font: inherit;
+    color: inherit;
+    transition: padding-left .18s ease;
+  }
+
+  .level-row:hover{ padding-left: 8px; }
+
+  .level-num{
+    font-family:'Fraunces', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    width: 54px;
+    flex-shrink:0;
+  }
+
+  .level-body h3{
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
+
+  .level-body p{
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .level-arrow{
+    margin-left:auto;
+    color: var(--maroon);
+    font-size: 1.3rem;
+    flex-shrink:0;
+  }
+
+  /* ---------- Detalhe do nível ---------- */
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap: 6px;
+    color: var(--maroon);
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+  }
+  .back-link:hover{ color: var(--maroon-dark); }
+
+  .level-detail-head h2{ font-size: clamp(1.7rem, 3.4vw, 2.3rem); }
+  .level-detail-head .level-tag{
+    display:inline-block;
+    color: var(--green);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .level-detail-text{ max-width: 640px; margin: 20px 0 40px; color: var(--ink-soft); }
+  .level-detail-text p + p{ margin-top: 14px; }
+
+  .gallery{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .gallery .photo-placeholder{ aspect-ratio: 4/3; border-radius: var(--radius); border: 1px solid var(--line); }
+  .gallery .photo-placeholder svg{ width: 46px; height: 46px; }
+  .gallery .ph-label{ font-size: 0.75rem; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background: var(--maroon-dark);
+    color: var(--cream);
+    padding: 48px 0 30px;
+    margin-top: 40px;
+  }
+
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 30px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid rgba(243,232,210,.22);
+  }
+
+  footer h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin-bottom: 12px;
+    font-size: 1.05rem;
+  }
+
+  footer p, footer a{
+    color: rgba(243,232,210,.85);
+    font-size: 0.94rem;
+  }
+  footer p + p{ margin-top: 6px; }
+
+  .footer-bottom{
+    padding-top: 18px;
+    font-size: 0.82rem;
+    color: rgba(243,232,210,.6);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 760px){
+    nav{ display:none; }
+    .menu-btn{ display:inline-block; }
+    header.open nav{
+      display:block;
+      position: absolute;
+      top: 100%; left:0; right:0;
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 28px 20px;
+    }
+    header.open nav ul{ flex-direction:column; gap: 16px; }
+
+    .values-grid{ grid-template-columns: 1fr; gap: 30px; }
+    .gallery{ grid-template-columns: repeat(2, 1fr); }
+    .footer-grid{ grid-template-columns: 1fr; gap: 26px; }
+    .hero-caption{ padding: 28px 20px 32px; }
+    section{ padding: 48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="header-inner">
+    <a href="#inicio" class="brand" onclick="closeMenu()">
+      <!-- Substitua "logo-fermas.png" pelo caminho real do logótipo (ex: "imagens/logo-fermas.png") -->
+      <img class="crest" src="C:\Users\Sara.Nunez\Downloads\logo_fermas.png" alt="Logótipo do Colégio Fermas">
+      <span class="brand-name">Colégio Fermas<span>Luanda, Angola</span></span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#inicio" data-nav="inicio">Início</a></li>
+        <li><a href="#sobre" data-nav="sobre">Sobre Nós</a></li>
+        <li><a href="#oferecemos" data-nav="oferecemos">O Que Oferecemos</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menu">&#9776;</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= INÍCIO ================= -->
+  <section class="view" data-view="inicio">
+    <div class="hero">
+      <div class="hero-frame">
+  <div class="photo-placeholder">
+    <img src="C:/Users/Sara.Nunez/Downloads/fondo_fermas.png"
+         alt="Logótipo do Colégio Fermas">
+  </div>
+
+  <div class="hero-caption">
+    <h1>Colégio Fermas</h1>
+    <p class="tagline">
+      Da iniciação à 12ª classe, um percurso construído com cuidado.
+    </p>
+  </div>
+</div>
+
+      <p class="hero-note">O Colégio Fermas acompanha os alunos desde os primeiros passos na iniciação até à conclusão do ensino secundário, com um ensino próximo, disciplinado e atento a cada criança e jovem.</p>
+
+      <div class="hero-actions">
+        <a href="#oferecemos" class="btn btn-primary">Ver os níveis de ensino</a>
+        <a href="#sobre" class="btn btn-secondary">Conhecer o colégio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOBRE NÓS ================= -->
+  <section class="view" data-view="sobre">
+    <div class="section-head">
+      <h2>Sobre Nós</h2>
+      <p>Um colégio que cresce junto com as famílias de Angola.</p>
+    </div>
+
+    <div class="about-text">
+      <p>O complexo escolar privado Fermas iniciou a sua atividade lectiva no dia 6 de fevereiro de 2015, com o ensino pré-escolar, o ensino primário e o I ciclo.</p>
+      <p>Esta instituição está situada no Lar Patriota, no município de Talatona.</p>
+      <p>Acreditamos que aprender é também crescer como pessoa. Por isso, unimos rigor académico e acompanhamento próximo, num ambiente onde professores, alunos e famílias trabalham lado a lado.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <h3>MISSÃO</h3>
+        <p>O Complexo escolar privado Fermas tem como
+          missão formar indivíduos preparados para
+          transformar positivamente a sociedade, através
+          de uma educação de qualidade, inovadora e
+          orientada para a excelência.</p>
+      </div>
+      <div class="value-card">
+        <h3>VISÃO</h3>
+        <p>Ser um colégio de referência em Angola,
+          reconhecido pela qualidade do ensino, excelência dos serviços e pelos
+          resultados dos seus alunos, promovendo conhecimento, inovação e melhoria contínua.</p>
+      </div>
+      <div class="value-card">
+        <h3>VALORES</h3>
+        <p>A identidade do Complexo escolar privado Fermas assenta em valores que orientam a nossa forma de ensinar, servir e relacionar-nos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= O QUE OFERECEMOS ================= -->
+  <section class="view" data-view="oferecemos">
+    <div class="section-head">
+      <h2>O Que Oferecemos</h2>
+   <p>O Complexo escolar privado Fermas desenvolve, em todos os níveis de ensino,
+          um Projecto Pedagógico global, integrado e orientado para a excelência, alinhado
+          com as orientações e os objectivos gerais definidos pelo Ministério da Educação,
+          sem deixar de responder às necessidades e aos desafios da realidade angolana</p>    
+  </div>
+
+    <div class="level-list" id="level-list"></div>
+  </section>
+
+  <!-- ================= DETALHE DE NÍVEL (gerado por JS) ================= -->
+  <section class="view" data-view="nivel">
+    <a href="#oferecemos" class="back-link">&larr; Voltar a O Que Oferecemos</a>
+    <div class="level-detail-head">
+      <span class="level-tag" id="nivel-tag"></span>
+      <h2 id="nivel-titulo"></h2>
+    </div>
+    <div class="level-detail-text" id="nivel-texto"></div>
+    <div class="gallery" id="nivel-galeria"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <h4>Colégio Fermas</h4>
+      <p>Da iniciação à 12ª classe — Luanda, Angola.</p>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <p>Rua 18/33, Lar do Patriota</p>
+      <p>Município de Talatona, Luanda &mdash; Angola</p>
+      <p>Telefone: (+244) 936 269 025</p>
+      <p>Telefone: (+244) 929 065 460</p>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>&copy; <span id="year"></span> Colégio Fermas. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // ---------- Dados dos níveis ----------
+  const niveis = [
+    {
+      id: "iniciacao",
+      numero: "01",
+      nome: "Iniciação",
+      resumo: "Os primeiros passos escolares, entre o brincar e o aprender.",
+      tag: "Educação Pré-Escolar",
+      texto: [
+        "A Iniciação é o primeiro contacto da criança com o ambiente escolar. Aqui, o brincar tem um papel central: é através dele que a criança desenvolve a linguagem, a coordenação e a convivência com os colegas.",
+        "As turmas são pequenas e o acompanhamento é próximo, para que cada criança se sinta segura a explorar, perguntar e experimentar."
+      ]
+    },
+    {
+      id: "primario",
+      numero: "02",
+      nome: "Ensino Primário",
+      resumo: "Da 1ª à 6ª classe — as bases da leitura, escrita e matemática.",
+      tag: "1ª à 6ª Classe",
+      texto: [
+        "No Ensino Primário, os alunos consolidam a leitura, a escrita e o cálculo, ao mesmo tempo que descobrem as ciências, a história e a geografia.",
+        "É também nesta fase que se formam hábitos de estudo e responsabilidade, com o apoio próximo dos professores e da família."
+      ]
+    },
+    {
+      id: "iciclo",
+      numero: "03",
+      nome: "I Ciclo do Ensino Secundário",
+      resumo: "Da 7ª à 9ª classe — aprofundamento e orientação.",
+      tag: "7ª à 9ª Classe",
+      texto: [
+        "O I Ciclo aprofunda as disciplinas fundamentais e introduz um estudo mais exigente, preparando os alunos para as escolhas do ciclo seguinte.",
+        "Ao longo destes três anos, o colégio acompanha também a orientação vocacional dos alunos, ajudando-os a reconhecer os seus interesses e talentos."
+      ]
+    },
+    {
+      id: "iiciclo",
+      numero: "04",
+      nome: "II Ciclo do Ensino Secundário",
+      resumo: "Da 10ª à 12ª classe — o percurso final até ao ensino superior.",
+      tag: "10ª à 12ª Classe",
+      texto: [
+        "O II Ciclo prepara os alunos para o ingresso no ensino superior ou no mercado de trabalho, com um estudo mais aprofundado e exigente.",
+        "Os alunos concluem o percurso escolar no Colégio Fermas prontos para os desafios seguintes, com uma base sólida construída desde a Iniciação."
+      ]
+    },
+    {
+      id: "externato",
+      numero: "05",
+      nome: "Externato",
+      resumo: "Apoio ao estudo e acompanhamento para além do horário lectivo.",
+      tag: "Regime de Externato",
+      texto: [
+        "O Externato é um serviço complementar para os alunos que permanecem no colégio para além do horário normal de aulas, com apoio ao estudo, realização de trabalhos de casa e acompanhamento próximo.",
+        "É uma opção pensada para as famílias que precisam de mais flexibilidade no horário, sem abdicar da qualidade do acompanhamento educativo."
+      ]
+    }
+  ];
+
+  // ---------- Construção da lista de níveis ----------
+  const levelListEl = document.getElementById('level-list');
+  niveis.forEach(n => {
+    const row = document.createElement('button');
+    row.className = 'level-row';
+    row.onclick = () => { window.location.hash = '#nivel-' + n.id; };
+    row.innerHTML = `
+      <span class="level-num">${n.numero}</span>
+      <span class="level-body">
+        <h3>${n.nome}</h3>
+        <p>${n.resumo}</p>
+      </span>
+      <span class="level-arrow">&#8250;</span>
+    `;
+    levelListEl.appendChild(row);
+  });
+
+  const iconSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon-dark)" stroke-width="1.2">
+      <rect x="3" y="5" width="18" height="14" rx="1.5"/>
+      <circle cx="9" cy="10.5" r="1.8"/>
+      <path d="M4 18l5-5 4 4 3-3 4 4" stroke-linejoin="round"/>
+    </svg>`;
+
+  function renderNivel(id){
+    const n = niveis.find(x => x.id === id);
+    if(!n) return false;
+    document.getElementById('nivel-tag').textContent = n.tag;
+    document.getElementById('nivel-titulo').textContent = n.nome;
+    document.getElementById('nivel-texto').innerHTML = n.texto.map(p => `<p>${p}</p>`).join('');
+    const gal = document.getElementById('nivel-galeria');
+    gal.innerHTML = '';
+    for(let i=0;i<3;i++){
+      const ph = document.createElement('div');
+      ph.className = 'photo-placeholder';
+      ph.innerHTML = iconSvg + `<p class="ph-label">Fotografia — ${n.nome}</p>`;
+      gal.appendChild(ph);
+    }
+    return true;
+  }
+
+  // ---------- Router ----------
+  const views = document.querySelectorAll('.view');
+  const navLinks = document.querySelectorAll('nav a');
+
+  function route(){
+    let hash = window.location.hash.replace('#','') || 'inicio';
+    let viewName = hash;
+    let isNivel = false;
+
+    if(hash.startsWith('nivel-')){
+      isNivel = renderNivel(hash.replace('nivel-',''));
+      viewName = 'nivel';
+      if(!isNivel){ viewName = 'inicio'; window.location.hash = '#inicio'; }
+    }
+
+    views.forEach(v => v.classList.toggle('active', v.dataset.view === viewName));
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.nav === viewName));
+    window.scrollTo({top:0, behavior:'instant'});
+    closeMenu();
+  }
+
+  window.addEventListener('hashchange', route);
+  route();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- Menu mobile ----------
+  function toggleMenu(){
+    document.getElementById('site-header').classList.toggle('open');
+  }
+  function closeMenu(){
+    document.getElementById('site-header').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
