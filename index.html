@@ -520,7 +520,7 @@
 
   .footer-grid{
     display:grid;
-    grid-template-columns: 1.3fr 1fr;
+    grid-template-columns: 1.1fr 1fr 0.8fr;
     gap: 30px;
     padding-bottom: 26px;
     border-bottom: 1px solid rgba(243,232,210,.22);
@@ -538,6 +538,22 @@
     font-size: 0.94rem;
   }
   footer p + p{ margin-top: 6px; }
+
+  .social-links{
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .social-link{
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    color: rgba(243,232,210,.85);
+    font-size: 0.94rem;
+    transition: color .2s ease;
+  }
+  .social-link:hover{ color: var(--gold); }
+  .social-link svg{ width: 20px; height: 20px; flex-shrink:0; }
 
   .footer-bottom{
     padding-top: 18px;
@@ -792,15 +808,15 @@
 
   <div class="hero-caption">
     <h1>Colégio Fermas</h1>
-           <p>"Educação é a melhor arma que se pode usar para mudar o mundo."</p>
-        <cite>— Nelson Mandela</cite>
+    <p class="tagline">Da iniciação à 12ª classe — Luanda, Angola</p>
   </div>
 </div>
 
       <p class="hero-note">O Colégio Fermas acompanha os alunos desde os primeiros passos na iniciação até à conclusão do ensino secundário, com um ensino próximo, disciplinado e atento a cada criança e jovem.</p>
 
       <blockquote class="quote-block">
-
+        <p>"Educação é a melhor arma que se pode usar para mudar o mundo."</p>
+        <cite>— Nelson Mandela</cite>
       </blockquote>
 
       <div class="hero-actions">
@@ -962,6 +978,26 @@
       <p>Telefone: (+244) 936 269 025</p>
       <p>Telefone: (+244) 929 065 460</p>
     </div>
+    <div>
+      <h4>Redes Sociais</h4>
+      <div class="social-links">
+        <a href="https://www.instagram.com/colegiofermas_?stkn=MXd0b3J5Y2FmeGRpbg==" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://www.tiktok.com/@colegiofermas.oficial?_r=1&_t=ZS-99aZjawJEQx" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 3v10.5a3.5 3.5 0 1 1-3-3.46" stroke-linejoin="round"/>
+            <path d="M14 3c.4 2.3 2 4 4.5 4.3" stroke-linejoin="round"/>
+          </svg>
+          <span>TikTok</span>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="wrap footer-bottom">
     <p>&copy; <span id="year"></span> Colégio Fermas. Todos os direitos reservados.</p>
@@ -1023,29 +1059,29 @@
   // ---------- Dados da Administração ----------
   // Substitua "foto" pelo caminho real de cada fotografia e "bio" pelo texto da biografia.
   const equipa = [
-    { id:"diretor", nome:"Nome do Director", cargo:"Director-Geral", foto:"Imagens/staff/placeholder.png",
+    { id:"diretor-geral", nome:"Nome do Director-Geral", cargo:"Director-Geral", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Director-Geral. Substitua este texto pela formação, percurso profissional e visão desta pessoa para o Colégio Fermas.", "Pode acrescentar um segundo parágrafo com mais detalhes sobre a sua experiência."] },
     { id:"subdiretor-pedagogico", nome:"Nome do Subdirector Pedagógico", cargo:"Subdirector Pedagógico", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Subdirector Pedagógico. Substitua este texto pela formação e percurso profissional."] },
-    { id:"subdiretor-administrativo", nome:"Nome do Subdirector", cargo:"Subdirector Administrativo e Financeiro", foto:"Imagens/staff/placeholder.png",
+    { id:"subdiretor-administrativo", nome:"Nome do Subdirector Administrativo e Financeiro", cargo:"Subdirector Administrativo e Financeiro", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Subdirector Administrativo e Financeiro. Substitua este texto pela formação e percurso profissional."] },
-    { id:"diretor-pre-escolar", nome:"Nome do Director", cargo:"Director da Educação Pré-Escolar", foto:"Imagens/staff/placeholder.png",
+    { id:"diretor-pre-escolar", nome:"Nome do Director da Educação Pré-Escolar", cargo:"Director da Educação Pré-Escolar", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Director da Educação Pré-Escolar. Substitua este texto pela formação e percurso profissional."] },
-    { id:"diretor-primario", nome:"Nome do Director", cargo:"Director do Ensino Primário", foto:"Imagens/staff/placeholder.png",
+    { id:"diretor-primario", nome:"Nome do Director do Ensino Primário", cargo:"Director do Ensino Primário", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Director do Ensino Primário. Substitua este texto pela formação e percurso profissional."] },
-    { id:"diretor-iciclo", nome:"Nome do Director", cargo:"Director do I Ciclo do Ensino Secundário", foto:"Imagens/staff/placeholder.png",
+    { id:"diretor-iciclo", nome:"Nome do Director do I Ciclo", cargo:"Director do I Ciclo do Ensino Secundário", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Director do I Ciclo. Substitua este texto pela formação e percurso profissional."] },
-    { id:"diretor-iiciclo", nome:"Nome do Director ", cargo:"Director do II Ciclo do Ensino Secundário", foto:"Imagens/staff/placeholder.png",
+    { id:"diretor-iiciclo", nome:"Nome do Director do II Ciclo", cargo:"Director do II Ciclo do Ensino Secundário", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Director do II Ciclo. Substitua este texto pela formação e percurso profissional."] },
-    { id:"coordenador-pedagogico", nome:"Nome do Coordenador", cargo:"Coordenador Pedagógico", foto:"Imagens/staff/placeholder.png",
+    { id:"coordenador-pedagogico", nome:"Nome do Coordenador Pedagógico", cargo:"Coordenador Pedagógico", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Coordenador Pedagógico. Substitua este texto pela formação e percurso profissional."] },
-    { id:"coordenador-disciplina", nome:"Nome do Coordenador", cargo:"Coordenador de Disciplina", foto:"Imagens/staff/placeholder.png",
+    { id:"coordenador-disciplina", nome:"Nome do Coordenador de Disciplina", cargo:"Coordenador de Disciplina", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Coordenador de Disciplina. Substitua este texto pela formação e percurso profissional."] },
     { id:"chefe-secretaria", nome:"Nome do Chefe de Secretaria", cargo:"Chefe de Secretaria", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Chefe de Secretaria. Substitua este texto pela formação e percurso profissional."] },
-    { id:"recursos-humanos", nome:"Nome do Responsável de RH", cargo:"Responsável de Recursos Humanos", foto:"Imagens/staff/placeholder.png",
+    { id:"recursos-humanos", nome:"Nome do Responsável de Recursos Humanos", cargo:"Responsável de Recursos Humanos", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Responsável de Recursos Humanos. Substitua este texto pela formação e percurso profissional."] },
-    { id:"instalacoes-logistica", nome:"Nome do Patrimonio", cargo:"Responsável de Instalações e Logística", foto:"Imagens/staff/placeholder.png",
+    { id:"instalacoes-logistica", nome:"Nome do Responsável de Instalações e Logística", cargo:"Responsável de Instalações e Logística", foto:"Imagens/staff/placeholder.png",
       bio:["Biografia do Responsável de Instalações e Logística. Substitua este texto pela formação e percurso profissional."] }
   ];
 
